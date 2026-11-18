@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant S as Student
+    participant UI as Frontend
+    participant API as FastAPI
+    participant O as Orchestrator
+    participant R as Retrieval
+    participant P as Policy
+    participant G as Generation
+
+    S->>UI: "final exam format?"
+    UI->>API: POST /api/ask
+    API->>O: handle(question, history)
+    O->>R: retrieve(question)
+    R->>R: expand, stem, phrase match,<br/>version boost
+    R-->>O: ranked passages
+    O->>P: freshness / conflicts / coverage
+    P-->>O: warnings, sufficiency
+    alt coverage sufficient
+        O->>G: answer from current passages
+        G-->>O: text + cited passage ids
+    else coverage insufficient
+        O->>G: refuse, name missing detail
+        G-->>O: refusal text
+    end
+    Note over G: system prompt —<br/>cite [n] inline<br/>refuse if evidence gap<br/>ignore superseded values<br/>max 120 words
+    O-->>API: status, answer, sources, warnings
+    API-->>UI: JSON payload
+    UI-->>S: answer + evidence panel

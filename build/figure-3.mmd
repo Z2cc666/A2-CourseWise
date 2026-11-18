@@ -1,0 +1,13 @@
+flowchart TB
+    Q["Student:<br/>'book me a slot'"] --> M{"Intent<br/>action?"}
+    M -->|"no"| ANS["Answer path<br/>Figure 2"]
+    M -->|"yes"| SL["Match free slot<br/>date / time / tutor"]
+    SL -->|"no free slot"| UN["action-unavailable<br/>nothing changed"]
+    SL --> P["propose()"]
+    P --> PV["Preview card<br/>date · time · tutor · topic<br/>+ consequence + cancel rule"]
+    PV -->|"confirm + action id"| C["commit()"]
+    PV -->|"cancel"| X["discard<br/>nothing written"]
+    C -->|"id already used"| E["409 rejected<br/>single-use id"]
+    C --> B["Booking written<br/>SQLite bookings"]
+    X --> N["State unchanged"]
+    B -.->|"PLANNED"| EM["Email notification<br/>no mail service"]

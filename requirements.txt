@@ -1,0 +1,15 @@
+# CourseWise — backend dependencies
+#
+# The system runs without any API key. FastAPI + uvicorn are the only
+# required packages; the DeepSeek backend uses plain HTTP, so it needs no
+# SDK either.
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+pydantic>=2.9.0
+
+# HTTP client used for the DeepSeek API. The package is named "httpx2" on
+# PyPI; it is the same API as httpx.
+httpx2>=2.0.0
+
+# Optional: only for the Anthropic Claude backend.
+# anthropic>=0.40.0

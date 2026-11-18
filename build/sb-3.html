@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CourseWise — Storyboard</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 30px;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #f6f7f9;
+        color: #232a33;
+      }
+      .sheet { max-width: 1220px; margin: 0 auto; }
+      h1 { font-size: 21px; margin: 0 0 4px; letter-spacing: -0.02em; }
+      .meta { font-size: 12px; color: #6b7583; margin-bottom: 24px; }
+      .sb {
+        background: #fff;
+        border: 1px solid #e0e4ea;
+        border-radius: 14px;
+        margin-bottom: 18px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(21,26,32,.06);
+      }
+      .sb__head {
+        display: flex; align-items: baseline; gap: 10px;
+        padding: 12px 18px; border-bottom: 1px solid #eef0f4; background: #fbfbfd;
+      }
+      .sb__n {
+        font-size: 11px; font-weight: 700; letter-spacing: .09em;
+        text-transform: uppercase; color: #3a4bd0;
+      }
+      .sb__t { font-size: 14.5px; font-weight: 620; }
+      .sb__frames { display: grid; grid-template-columns: repeat(3, 1fr); }
+      .frame { border-right: 1px solid #eef0f4; padding: 14px 15px 16px; }
+      .frame:last-child { border-right: none; }
+      .frame__label {
+        font-size: 10px; font-weight: 700; letter-spacing: .07em;
+        text-transform: uppercase; color: #9aa3b2; margin-bottom: 8px;
+      }
+      /* Screenshots are captured at 2x device pixel ratio, so they are shown
+         at half size to keep the sheet legible when printed. */
+      .shot {
+        display: block; width: 100%; height: auto;
+        border: 1px solid #e0e4ea; border-radius: 8px; background: #fff;
+      }
+      .shot + .shot { margin-top: 7px; }
+      .shot--user {
+        width: auto; max-width: 100%; border: none; margin: 0 auto 7px;
+      }
+      .note {
+        font-size: 10.5px; color: #6b7583; line-height: 1.5;
+        border-left: 2px solid #dde3fd; padding-left: 9px; margin-top: 10px;
+      }
+      .note b { color: #363e49; font-weight: 650; }
+      .ctrl { font-size: 10px; color: #9aa3b2; margin-top: 6px; }
+      .kbd {
+        display: inline-block; padding: 1px 5px; border: 1px solid #c8ced8;
+        border-bottom-width: 2px; border-radius: 4px; background: #f6f7f9;
+        font-size: 9px; font-family: ui-monospace, monospace; color: #4d5663;
+      }
+      .cap {
+        font-size: 11.5px; color: #4d5663; padding: 11px 18px;
+        border-top: 1px solid #eef0f4; background: #fbfbfd; line-height: 1.55;
+      }
+      .cap b { color: #232a33; }
+      @media print { body { background: #fff; padding: 12px; } }
+    </style>
+  <style>.sb:nth-of-type(3) { display: block; }.sb:not(:nth-of-type(3)) { display: none; }.sheet > h1, .sheet > .meta { display: none; }</style>
+</head>
+  <body>
+    <div class="sheet">
+      <h1>CourseWise — storyboard</h1>
+      <div class="meta">
+        Assignment 2, Project Report · three interaction examples ·
+        every frame is a screenshot of the running system, not a mock-up
+      </div>
+
+      <!-- ============================================ SB 1 -->
+      <section class="sb">
+        <div class="sb__head">
+          <span class="sb__n">Storyboard 1</span>
+          <span class="sb__t">Stale document detected — the value changed</span>
+        </div>
+        <div class="sb__frames">
+          <div class="frame">
+            <div class="frame__label">1 · Student asks</div>
+            <img class="shot shot--user" src="figures/sb1-f1-user.png" alt="Student question" />
+            <div class="note">
+              <b>Action</b> — one natural-language question. The student names
+              neither the document nor the week, so the assistant has to find
+              the right one and work out which version applies.
+            </div>
+            <div class="ctrl">Control: <span class="kbd">Enter</span> to send</div>
+          </div>
+
+          <div class="frame">
+            <div class="frame__label">2 · Answer, with the passage it came from</div>
+            <img class="shot" src="figures/sb1-f2-answer.png" alt="Assistant answer" />
+            <img class="shot" src="figures/sb1-f2-source.png" alt="Cited source passage" />
+            <div class="note">
+              <b>Response</b> — the answer is the value from the version in
+              force, and the passage it was taken from is attached, marked
+              <i>cited</i>, with its section and date.
+            </div>
+            <div class="ctrl">Control: click a passage to open the full excerpt</div>
+          </div>
+
+          <div class="frame">
+            <div class="frame__label">3 · The change is reported</div>
+            <img class="shot" src="figures/sb1-f3-warning.png" alt="Change warning" />
+            <img class="shot" src="figures/sb1-f3-stale.png" alt="Superseded passage" />
+            <div class="note">
+              <b>Feedback</b> — the warning names both values and the date of
+              the replacement, and the superseded passage is still shown, so
+              the student can see what they would otherwise have been told.
+            </div>
+            <div class="ctrl">Control: the superseded passage stays visible, flagged</div>
+          </div>
+        </div>
+        <div class="cap">
+          <b>Storyboard 1 — out-of-date guidance.</b> The student asks a
+          question whose answer changed. The system answers from the version
+          in force, shows the superseded version as flagged evidence, and
+          states explicitly which value was replaced and when. This is the
+          interaction that motivated the whole design: a student who missed
+          the October announcement would otherwise have planned for a
+          90-minute paper.
+        </div>
+      </section>
+
+      <!-- ============================================ SB 2 -->
+      <section class="sb">
+        <div class="sb__head">
+          <span class="sb__n">Storyboard 2</span>
+          <span class="sb__t">The evidence boundary — answered, then declined</span>
+        </div>
+        <div class="sb__frames">
+          <div class="frame">
+            <div class="frame__label">1 · Student asks</div>
+            <img class="shot shot--user" src="figures/sb2-f1-user.png" alt="Student question" />
+            <div class="note">
+              <b>Action</b> — a legitimate student question with a
+              circumstance-based justification, of the kind the handbook is
+              expected to address.
+            </div>
+            <div class="ctrl">Control: <span class="kbd">Enter</span> to send</div>
+          </div>
+
+          <div class="frame">
+            <div class="frame__label">2 · Answered, because the handbook covers it</div>
+            <img class="shot" src="figures/sb2-f2-answer.png" alt="Assistant answer" />
+            <img class="shot" src="figures/sb2-f2-source.png" alt="Cited FAQ passage" />
+            <div class="note">
+              <b>Response</b> — the answer comes from the FAQ, not from general
+              knowledge. The student's own word "job" was mapped onto the
+              handbook's term "work commitments".
+            </div>
+            <div class="ctrl">Control: click the cited passage to read it in full</div>
+          </div>
+
+          <div class="frame">
+            <div class="frame__label">3 · Declined, because nothing covers it</div>
+            <img class="shot" src="figures/sb2-f3-answer.png" alt="Refusal" />
+            <img class="shot" src="figures/sb2-f3-notice.png" alt="Reason and next steps" />
+            <div class="note">
+              <b>Feedback</b> — no passage matched, so the system refuses and
+              says what was missing, rather than producing a plausible answer
+              with no source. Refusal is a designed output, not an error.
+            </div>
+            <div class="ctrl">Control: two suggested next steps are offered</div>
+          </div>
+        </div>
+        <div class="cap">
+          <b>Storyboard 2 — the evidence boundary.</b> Frame 2 shows an answer
+          that required mapping the student's vocabulary onto the handbook's.
+          Frame 3 shows the harder case: the same interaction pattern produces
+          a refusal with zero sources, because the corpus genuinely does not
+          cover the question.
+        </div>
+      </section>
+
+      <!-- ============================================ SB 3 -->
+      <section class="sb">
+        <div class="sb__head">
+          <span class="sb__n">Storyboard 3</span>
+          <span class="sb__t">State change — propose, preview, confirm</span>
+        </div>
+        <div class="sb__frames">
+          <div class="frame">
+            <div class="frame__label">1 · Student asks for an action</div>
+            <img class="shot shot--user" src="figures/sb3-f1-user.png" alt="Student request" />
+            <div class="note">
+              <b>Action</b> — a request that changes state, expressed
+              informally with a day-part rather than a date.
+            </div>
+            <div class="ctrl">Control: <span class="kbd">Enter</span> to send</div>
+          </div>
+
+          <div class="frame">
+            <div class="frame__label">2 · System previews, changes nothing</div>
+            <img class="shot" src="figures/sb3-f2-preview.png" alt="Preview card with confirm and cancel" />
+            <div class="note">
+              <b>Response</b> — the preview names every field that would
+              change, states the consequence and the cancellation rule, and
+              offers a cancel path. Nothing is written yet.
+            </div>
+            <div class="ctrl">Control: two explicit buttons — Confirm and Cancel</div>
+          </div>
+
+          <div class="frame">
+            <div class="frame__label">3 · After confirmation</div>
+            <img class="shot" src="figures/sb3-f3-confirmed.png" alt="Resolved action" />
+            <div class="note">
+              <b>Feedback</b> — the outcome is stated in place of the preview,
+              and the card can no longer be confirmed twice: the action id is
+              single-use and a repeat returns HTTP 409.
+            </div>
+            <div class="ctrl">Control: the booking is written to SQLite</div>
+          </div>
+        </div>
+        <div class="cap">
+          <b>Storyboard 3 — controlled state change.</b> The assistant can
+          only propose. The preview names every field that would change, states
+          the consequence and the cancellation rule, and offers a cancel path
+          that leaves state untouched. Only an explicit confirmation carrying
+          the action id commits anything, and an action cannot be committed
+          twice. The confirmation text still mentions an email, which no mail
+          service delivers; that is labelled in the README as planned.
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
